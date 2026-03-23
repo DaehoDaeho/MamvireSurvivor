@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 321833714}
   - component: {fileID: 321833716}
   - component: {fileID: 321833717}
+  - component: {fileID: 321833718}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -224,6 +225,24 @@ MonoBehaviour:
   lastMoveDirection: {x: 0, y: 0}
   isMoving: 0
   moveOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &321833718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321833713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68edb71f0aa10814db3fa44a31aac5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumHealth: 5
+  currentHealth: 0
+  invincibilityDuration: 0.5
+  isInvincible: 0
+  currentInvincibilityTime: 0
+  isDead: 0
 --- !u!1 &415818300
 GameObject:
   m_ObjectHideFlags: 0
