@@ -93,4 +93,10 @@ public class EnemySpawner : MonoBehaviour
 
         return spawnPosition;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(playerTransform.position, spawnRadius);
+    }
 }
