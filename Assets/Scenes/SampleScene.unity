@@ -319,15 +319,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 321833713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ec53b98eeca2141a680deb577c7161, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d12093cac36b8a408ed7bb19584ee55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 1
+  projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
   attackPoint: {fileID: 321833714}
-  attackIndicatorPrefab: {fileID: 2457672756229299933, guid: 9dc7ba05cf9c72f4f9a6e4891b401d52, type: 3}
-  indicatorLifetime: 0.2
+  playerMovementState: {fileID: 321833717}
+  projectileSpeed: 8
+  projectileLifetime: 2
   attackTimer: 0
-  totalAttackCount: 0
+  totalShotCount: 0
 --- !u!1 &415818300
 GameObject:
   m_ObjectHideFlags: 0
