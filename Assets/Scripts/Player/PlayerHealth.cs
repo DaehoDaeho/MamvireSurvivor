@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maximumHealth;
-        Debug.Log("플레이어 체력 초기화 완료: " + currentHealth + "/" + maximumHealth);
+        //Debug.Log("플레이어 체력 초기화 완료: " + currentHealth + "/" + maximumHealth);
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
             isInvincible = false;
             currentInvincibilityTime = 0.0f;
 
-            Debug.Log("무적 상태 종료");
+            //Debug.Log("무적 상태 종료");
         }
     }
 
@@ -79,18 +79,18 @@ public class PlayerHealth : MonoBehaviour
     {
         if(isDead == true)
         {
-            Debug.Log("이미 사망한 상태이므로 데미지를 무시");
+            //Debug.Log("이미 사망한 상태이므로 데미지를 무시");
             return;
         }
 
         if(isInvincible == true)
         {
-            Debug.Log("무적 상태이므로 데미지를 무시");
+            //Debug.Log("무적 상태이므로 데미지를 무시");
             return;
         }
 
         currentHealth -= damageAmount;
-        Debug.Log("플레이어 피격: 받은 데미지 = " + damageAmount + ", 현재 체력 = " + currentHealth);
+        //Debug.Log("플레이어 피격: 받은 데미지 = " + damageAmount + ", 현재 체력 = " + currentHealth);
 
         if(currentHealth <= 0)
         {
@@ -109,14 +109,14 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        Debug.Log("플레이어 사망 처리");
+        //Debug.Log("플레이어 사망 처리");
     }
 
     void StartInvincibility()
     {
         isInvincible = true;
         currentInvincibilityTime = invincibilityDuration;
-        Debug.Log("무적 상태 시작, 지속 시간 = " + invincibilityDuration);
+        //Debug.Log("무적 상태 시작, 지속 시간 = " + invincibilityDuration);
     }
 
     public int GetCurrentHealth()

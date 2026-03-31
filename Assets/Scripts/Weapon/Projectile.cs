@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -6,7 +7,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
     [SerializeField] private float moveSpeed = 0.0f;
     [SerializeField] private float remainingLifetime = 0.0f;
+    [SerializeField] private int damageAmount = 1;
     [SerializeField] private bool isInitialized = false;
+
+    [Header("충돌 판별 설정")]
+    [SerializeField] private string enemyTag = "Enemy";
 
     // Update is called once per frame
     void Update()
@@ -47,6 +52,22 @@ public class Projectile : MonoBehaviour
         remainingLifetime -= Time.deltaTime;
         if(remainingLifetime < 0.0f)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag(enemyTag) == false)
+        {
+            return;
+        }
+
+        EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+        if(enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(damageAmount);
+
             Destroy(gameObject);
         }
     }

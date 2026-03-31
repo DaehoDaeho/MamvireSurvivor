@@ -26,7 +26,7 @@ public class PlayerMovementState : MonoBehaviour
         ReadMovementInput();
         UpdateMovementState();
         MovePlayer();
-        DebugMovementStateChange();
+        //DebugMovementStateChange();
     }
 
     void ReadMovementInput()
