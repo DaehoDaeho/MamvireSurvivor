@@ -66,6 +66,8 @@ public class Projectile : MonoBehaviour
         EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
         if(enemyHealth != null)
         {
+            Debug.Log("적 명중 완료!!!");
+
             enemyHealth.TakeDamage(damageAmount);
 
             Destroy(gameObject);

@@ -39,7 +39,16 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        if(isDead == true)
+        {
+            return;
+        }
+
         isDead = true;
+
+        // 경험치 드랍, 사망 이펙트, 사운드 재생.
+
+        Destroy(gameObject);
     }
 
     public int GetCurrentHealth()
