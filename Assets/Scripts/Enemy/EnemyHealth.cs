@@ -13,6 +13,9 @@ public class EnemyHealth : MonoBehaviour
     [Header("상태 확인용")]
     [SerializeField] private bool isDead = false;
 
+    [Header("드랍 설정")]
+    [SerializeField] private GameObject experiencePickupPrefab;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,8 +50,14 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
 
         // 경험치 드랍, 사망 이펙트, 사운드 재생.
+        DropExperiencePickup();
 
         Destroy(gameObject);
+    }
+
+    void DropExperiencePickup()
+    {
+        Instantiate(experiencePickupPrefab, transform.position, Quaternion.identity);
     }
 
     public int GetCurrentHealth()
