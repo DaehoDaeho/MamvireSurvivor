@@ -98,4 +98,14 @@ public class PlayerMovementState : MonoBehaviour
     {
         return isMoving;
     }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void SetMoveSpeed(float newMoveSpeed)
+    {
+        moveSpeed = newMoveSpeed;
+    }
 }

@@ -16,6 +16,9 @@ public class PlayerExperience : MonoBehaviour
     [Header("증가 규칙 설정")]
     [SerializeField] private int requiredExperienceIncrease = 2;
 
+    [Header("성장 적용 참조")]
+    [SerializeField] private PlayerStatController playerStatController;
+
     public void AddExperience(int amount)
     {
         currentExperience += amount;
@@ -48,6 +51,11 @@ public class PlayerExperience : MonoBehaviour
 
         Debug.Log("현재 레벨 : " + currentLevel + ", 남은 경험치 : " + currentExperience +
             ", 다음 필요 경험치 : " + requiredExperience);
+
+        if(playerStatController != null)
+        {
+            playerStatController.ApplyLevelUpBonus();
+        }
     }
 
     public int GetCurrentExperience()

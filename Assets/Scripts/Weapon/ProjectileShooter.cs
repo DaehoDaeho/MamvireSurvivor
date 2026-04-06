@@ -69,4 +69,24 @@ public class ProjectileShooter : MonoBehaviour
             }
         }
     }
+
+    public float GetAttackInterval()
+    {
+        return attackInterval;
+    }
+
+    public void SetAttackInterval(float newAttackInterval)
+    {
+        attackInterval = newAttackInterval;
+    }
+
+    public float GetProjectileSpeed()
+    {
+        return projectileSpeed;
+    }
+
+    public void SetProjectileSpeed(float newProjectileSpeed)
+    {
+        projectileSpeed = newProjectileSpeed;
+    }
 }

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 321833720}
   - component: {fileID: 321833721}
   - component: {fileID: 321833722}
+  - component: {fileID: 321833723}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -323,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d12093cac36b8a408ed7bb19584ee55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 0.2
+  attackInterval: 0.5
   projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
   attackPoint: {fileID: 321833714}
   playerMovementState: {fileID: 321833717}
@@ -343,7 +344,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c1f2e07217d4c4fa9b1bf25f8c849e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 1
   currentExperience: 0
+  requiredExperience: 5
+  requiredExperienceIncrease: 2
+  playerStatController: {fileID: 321833723}
+--- !u!114 &321833723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321833713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e0b2fb75781284da2c8a9c49b39694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementState: {fileID: 321833717}
+  projectileShooter: {fileID: 321833721}
+  moveSpeedIncreasePerLevel: 0.5
+  attackIntervalDecreasePerLevel: 0.1
+  projectileSpeedIncreasePerLevel: 1
+  minimumAttackInterval: 0.2
 --- !u!1 &415818300
 GameObject:
   m_ObjectHideFlags: 0
