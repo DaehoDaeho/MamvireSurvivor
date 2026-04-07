@@ -31,27 +31,36 @@ public class PlayerStatController : MonoBehaviour
         }
     }
 
-    public void ApplyLevelUpBonus()
+    public void ApplyMoveSpeedUpgrade()
     {
-        if(playerMovementState != null)
+        if (playerMovementState != null)
         {
             float currentMoveSpeed = playerMovementState.GetMoveSpeed();
             float newMoveSpeed = currentMoveSpeed + moveSpeedIncreasePerLevel;
             playerMovementState.SetMoveSpeed(newMoveSpeed);
         }
+    }
 
+    public void ApplyAttackSpeedUpgrade()
+    {
         if(projectileShooter != null)
         {
             float currentAttackInterval = projectileShooter.GetAttackInterval();
             float newAttackInterval = currentAttackInterval - attackIntervalDecreasePerLevel;
 
-            if(newAttackInterval < minimumAttackInterval)
+            if (newAttackInterval < minimumAttackInterval)
             {
                 newAttackInterval = minimumAttackInterval;
             }
 
             projectileShooter.SetAttackInterval(newAttackInterval);
+        }
+    }
 
+    public void ApplyProjectileSpeedUpgrade()
+    {
+        if(projectileShooter != null)
+        {
             float currentProjectileSpeed = projectileShooter.GetProjectileSpeed();
             float newProjectileSpeed = currentProjectileSpeed + projectileSpeedIncreasePerLevel;
             projectileShooter.SetProjectileSpeed(newProjectileSpeed);
