@@ -14,9 +14,24 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 6.0f;
     [SerializeField] private int spawnCountPerCycle = 1;
 
+    [Header("웨이브 난이도 설정")]
+    [SerializeField] private float spawnIntervalDecreasePerWave = 0.15f;    // 웨이브가 올라갈 때마다 생성 주기를 얼마나 줄일지 저장하는 변수.
+    [SerializeField] private float minimumSpawnInterval = 0.3f; // 생성 주기가 너무 낮아지는 것을 막기 위한 최소 생성 주기.
+    [SerializeField] private int wavePerAddionalSpawn = 2;  // 웨이브가 몇 단계 올라갈 때마다 한 번에 생성 수를 얼마나 늘릴지 계산하기 위한 기준.
+
+    [Header("기본값 저장용")]
+    [SerializeField] private float baseSpawnInterval = 0.0f;    // 초기 생성 주기를 저장하는 변수.
+    [SerializeField] private int baseSpawnCountPerCycle = 0;    // 초기 한 번당 생성 수를 저장하는 변수.
+
     [Header("디버그 확인용")]
     [SerializeField] private float spawnTimer = 0.0f;
     [SerializeField] private int totalSpawnedCount = 0;
+
+    void Awake()
+    {
+        baseSpawnInterval = spawnInterval;
+        baseSpawnCountPerCycle = spawnCountPerCycle;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,6 +107,25 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = playerPosition + new Vector3(spawnOffset.x, spawnOffset.y, 0.0f);
 
         return spawnPosition;
+    }
+
+    /// <summary>
+    /// 현재 웨이브에 맞는 적 생성 난이도를 적용하는 함수.
+    /// </summary>
+    /// <param name="wave">현재 웨이브 번호</param>
+    public void ApplyDifficulty(int wave)
+    {
+        // 웨이브 1에서는 기본값을 유지하고, 이후 웨이브부터 감소량을 적용한다.
+        float decreasedSpawnInterval = baseSpawnInterval - ((wave - 1) * spawnIntervalDecreasePerWave);
+
+        if(decreasedSpawnInterval < minimumSpawnInterval)
+        {
+            decreasedSpawnInterval = minimumSpawnInterval;
+        }
+
+        spawnInterval = decreasedSpawnInterval;
+
+        spawnCountPerCycle = baseSpawnCountPerCycle + ((wave - 1) / wavePerAddionalSpawn);
     }
 
     private void OnDrawGizmos()
