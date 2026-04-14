@@ -27,6 +27,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnTimer = 0.0f;
     [SerializeField] private int totalSpawnedCount = 0;
 
+    [SerializeField] private GameManager gameManager;
+
     void Awake()
     {
         baseSpawnInterval = spawnInterval;
@@ -53,6 +55,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameManager != null && gameManager.IsPlaying() == false)
+        {
+            return;
+        }
+
         if(playerTransform == null || enemyPrefab == null)
         {
             return;

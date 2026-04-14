@@ -19,6 +19,8 @@ public class PlayerExperience : MonoBehaviour
     [Header("UI 참조")]
     [SerializeField] private LevelUpSelectionUI levelUpSelectionUI;
 
+    [SerializeField] private GameManager gameManager;
+
     public void AddExperience(int amount)
     {
         currentExperience += amount;
@@ -52,9 +54,13 @@ public class PlayerExperience : MonoBehaviour
         Debug.Log("현재 레벨 : " + currentLevel + ", 남은 경험치 : " + currentExperience +
             ", 다음 필요 경험치 : " + requiredExperience);
 
-        if(levelUpSelectionUI != null)
+        //if(levelUpSelectionUI != null)
+        //{
+        //    levelUpSelectionUI.Show();
+        //}
+        if(gameManager != null)
         {
-            levelUpSelectionUI.Show();
+            gameManager.EnterLevelUpSelection();
         }
     }
 

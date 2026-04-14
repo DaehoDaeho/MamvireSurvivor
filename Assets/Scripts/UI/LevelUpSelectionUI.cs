@@ -11,10 +11,12 @@ public class LevelUpSelectionUI : MonoBehaviour
     [Header("UI 상태 확인용")]
     [SerializeField] private bool isOpen = false;
 
+    [SerializeField] private GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public void Show()
@@ -28,6 +30,12 @@ public class LevelUpSelectionUI : MonoBehaviour
     {
         isOpen = false;
         Time.timeScale = 1.0f;
+
+        if (gameManager != null)
+        {
+            gameManager.ResumePlaying();
+        }
+
         gameObject.SetActive(false);
     }
 

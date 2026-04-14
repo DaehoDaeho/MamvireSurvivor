@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("상태 확인용")]
     [SerializeField] private bool isDead = false;  // 사망 여부.
 
+    [SerializeField] private GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -110,6 +112,10 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
 
         //Debug.Log("플레이어 사망 처리");
+        if(gameManager != null)
+        {
+            gameManager.EnterGameOver();
+        }
     }
 
     void StartInvincibility()

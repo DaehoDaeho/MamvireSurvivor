@@ -19,6 +19,8 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float attackTimer = 0.0f;
     [SerializeField] private int totalShotCount = 0;
 
+    [SerializeField] private GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +38,12 @@ public class ProjectileShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(projectilePrefab == null || playerMovementState == null)
+        if (gameManager != null && gameManager.IsPlaying() == false)
+        {
+            return;
+        }
+
+        if (projectilePrefab == null || playerMovementState == null)
         {
             return;
         }
