@@ -3,17 +3,11 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    [Header("공격 주기 설정")]
-    [SerializeField] private float attackInterval = 1.0f;
+    [SerializeField] private WeaponController weaponController;
 
-    [Header("발사 참조 설정")]
-    [SerializeField] private GameObject projectilePrefab = null;
+    [Header("발사 참조 설정")]    
     [SerializeField] private Transform attackPoint = null;
     [SerializeField] private PlayerMovementState playerMovementState;
-
-    [Header("투사체 기본 설정")]
-    [SerializeField] private float projectileSpeed = 8.0f;
-    [SerializeField] private float projectileLifetime = 2.0f;
 
     [Header("디버그 확인용")]
     [SerializeField] private float attackTimer = 0.0f;
@@ -43,35 +37,53 @@ public class ProjectileShooter : MonoBehaviour
             return;
         }
 
-        if (projectilePrefab == null || playerMovementState == null)
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if(currentWeapon == null)
         {
             return;
         }
 
         attackTimer += Time.deltaTime;
 
-        if(attackTimer >= attackInterval)
+        if(attackTimer >= currentWeapon.attackInterval)
         {
-            FireProjectile();
-            attackTimer -= attackInterval;
+            FireProjectile(currentWeapon);
+            attackTimer -= currentWeapon.attackInterval;
         }
     }
 
-    void FireProjectile()
+    WeaponData GetCurrentWeapon()
     {
+        if(weaponController == null)
+        {
+            return null;
+        }
+
+        return weaponController.GetCurrentWeapon();
+    }
+
+    void FireProjectile(WeaponData currentWeapon)
+    {
+        if(currentWeapon.projectilePrefab == null)
+        {
+            return;
+        }
+
         Vector2 fireDirection = playerMovementState.GetLastMoveDirection();
         if(fireDirection == Vector2.zero)
         {
             fireDirection = Vector2.right;
         }
 
-        GameObject spawnedProjectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.identity);
+        GameObject spawnedProjectile = Instantiate(currentWeapon.projectilePrefab, attackPoint.position, Quaternion.identity);
         if(spawnedProjectile != null)
         {
             Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
             if(projectile != null)
             {
-                projectile.Initialize(fireDirection, projectileSpeed, projectileLifetime);
+                projectile.Initialize(fireDirection, currentWeapon.projectileSpeed, currentWeapon.projectileLifetime,
+                    currentWeapon.projectileDamage);
                 ++totalShotCount;
             }
         }
@@ -79,21 +91,49 @@ public class ProjectileShooter : MonoBehaviour
 
     public float GetAttackInterval()
     {
-        return attackInterval;
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if(currentWeapon == null)
+        {
+            return 0.0f;
+        }
+
+        return currentWeapon.attackInterval;
     }
 
     public void SetAttackInterval(float newAttackInterval)
     {
-        attackInterval = newAttackInterval;
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if (currentWeapon == null)
+        {
+            return;
+        }
+
+        currentWeapon.attackInterval = newAttackInterval;
     }
 
     public float GetProjectileSpeed()
     {
-        return projectileSpeed;
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if (currentWeapon == null)
+        {
+            return 0.0f;
+        }
+
+        return currentWeapon.projectileSpeed;
     }
 
     public void SetProjectileSpeed(float newProjectileSpeed)
     {
-        projectileSpeed = newProjectileSpeed;
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if (currentWeapon == null)
+        {
+            return;
+        }
+
+        currentWeapon.projectileSpeed = newProjectileSpeed;
     }
 }

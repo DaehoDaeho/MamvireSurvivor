@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 321833721}
   - component: {fileID: 321833722}
   - component: {fileID: 321833723}
+  - component: {fileID: 321833724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -470,12 +471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d12093cac36b8a408ed7bb19584ee55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 0.5
-  projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
+  weaponController: {fileID: 321833724}
   attackPoint: {fileID: 321833714}
   playerMovementState: {fileID: 321833717}
-  projectileSpeed: 8
-  projectileLifetime: 2
   attackTimer: 0
   totalShotCount: 0
   gameManager: {fileID: 1776625142}
@@ -515,6 +513,38 @@ MonoBehaviour:
   attackIntervalDecreasePerLevel: 0.1
   projectileSpeedIncreasePerLevel: 1
   minimumAttackInterval: 0.2
+--- !u!114 &321833724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321833713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7ad60ab86aa7449daa232b4fc399b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - weaponName: Basic
+    attackInterval: 1
+    projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
+    projectileSpeed: 8
+    projectileDamage: 1
+    projectileLifetime: 2
+  - weaponName: Rapid
+    attackInterval: 0.4
+    projectilePrefab: {fileID: 5540538010018331382, guid: f35a65d6447c13c469254ad4e64c10a5, type: 3}
+    projectileSpeed: 7
+    projectileDamage: 1
+    projectileLifetime: 1.5
+  - weaponName: Heavy
+    attackInterval: 1.5
+    projectilePrefab: {fileID: 5540538010018331382, guid: 4beaa89dc235bdd478b9940930e5b552, type: 3}
+    projectileSpeed: 5
+    projectileDamage: 3
+    projectileLifetime: 3
+  currentWeaponIndex: 0
 --- !u!1 &348426422
 GameObject:
   m_ObjectHideFlags: 0

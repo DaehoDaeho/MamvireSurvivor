@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         UpdateLifetime();
     }
 
-    public void Initialize(Vector2 direction, float speed, float lifetime)
+    public void Initialize(Vector2 direction, float speed, float lifetime, int damage)
     {
         if(direction.magnitude > 0.0f)
         {
@@ -38,6 +38,8 @@ public class Projectile : MonoBehaviour
 
         moveSpeed = speed;
         remainingLifetime = lifetime;
+        damageAmount = damage;
+
         isInitialized = true;
     }
 
