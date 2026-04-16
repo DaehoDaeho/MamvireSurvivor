@@ -83,7 +83,7 @@ public class ProjectileShooter : MonoBehaviour
             if(projectile != null)
             {
                 projectile.Initialize(fireDirection, currentWeapon.projectileSpeed, currentWeapon.projectileLifetime,
-                    currentWeapon.projectileDamage);
+                    currentWeapon.projectileDamage, currentWeapon.hitFeedbackStrength);
                 ++totalShotCount;
             }
         }

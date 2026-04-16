@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8264810563131731442}
   - component: {fileID: 4622011266691809477}
   - component: {fileID: 3245288270041922825}
+  - component: {fileID: 8288384783725612971}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -202,3 +203,27 @@ MonoBehaviour:
   currentHealth: 0
   isDead: 0
   experiencePickupPrefab: {fileID: 5212615195457298942, guid: 0325535b2d214f449ab95ad310c6d857, type: 3}
+  enemyFeedbackController: {fileID: 8288384783725612971}
+--- !u!114 &8288384783725612971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254822418400226013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8800b1e17734eea4e968601ccf062be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 9139381926231784885}
+  colliders:
+  - {fileID: 8264810563131731442}
+  hitFlashColor: {r: 0.7106918, g: 0.39110392, b: 0.39110392, a: 1}
+  baseHitFlashDuration: 0.06
+  extraHitFlashDuration: 0.08
+  deathColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.7}
+  deathRemoveDelay: 0.15
+  isHitFlashPlaying: 0
+  isDeathSequenceStarted: 0
+  originalColor: {r: 1, g: 1, b: 1, a: 1}

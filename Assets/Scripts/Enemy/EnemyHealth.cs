@@ -16,13 +16,15 @@ public class EnemyHealth : MonoBehaviour
     [Header("드랍 설정")]
     [SerializeField] private GameObject experiencePickupPrefab;
 
+    [SerializeField] private EnemyFeedbackController enemyFeedbackController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maximumHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, float hitFeedbackStrength)
     {
         if(isDead == true)
         {
@@ -30,6 +32,8 @@ public class EnemyHealth : MonoBehaviour
         }
 
         currentHealth -= damageAmount;
+
+        enemyFeedbackController.PlayHitFeedback(hitFeedbackStrength);
 
         Debug.Log("적 피격, 받은 데미지 = " + damageAmount + " 현재 체력 : " + currentHealth);
 
@@ -52,7 +56,14 @@ public class EnemyHealth : MonoBehaviour
         // 경험치 드랍, 사망 이펙트, 사운드 재생.
         DropExperiencePickup();
 
-        Destroy(gameObject);
+        if(enemyFeedbackController != null)
+        {
+            enemyFeedbackController.PlayDeathFeedbackAndDestroy();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void DropExperiencePickup()

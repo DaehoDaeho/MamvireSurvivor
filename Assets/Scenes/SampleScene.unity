@@ -529,21 +529,24 @@ MonoBehaviour:
   - weaponName: Basic
     attackInterval: 1
     projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
-    projectileSpeed: 8
+    projectileSpeed: 15
     projectileDamage: 1
     projectileLifetime: 2
+    hitFeedbackStrength: 0
   - weaponName: Rapid
     attackInterval: 0.4
     projectilePrefab: {fileID: 5540538010018331382, guid: f35a65d6447c13c469254ad4e64c10a5, type: 3}
-    projectileSpeed: 7
+    projectileSpeed: 12
     projectileDamage: 1
     projectileLifetime: 1.5
+    hitFeedbackStrength: 0.1
   - weaponName: Heavy
     attackInterval: 1.5
     projectilePrefab: {fileID: 5540538010018331382, guid: 4beaa89dc235bdd478b9940930e5b552, type: 3}
-    projectileSpeed: 5
+    projectileSpeed: 9
     projectileDamage: 3
     projectileLifetime: 3
+    hitFeedbackStrength: 0.6
   currentWeaponIndex: 0
 --- !u!1 &348426422
 GameObject:

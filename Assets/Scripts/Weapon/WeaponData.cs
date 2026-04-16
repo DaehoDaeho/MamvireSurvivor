@@ -17,4 +17,5 @@ public class WeaponData
     public int projectileDamage = 1;
 
     public float projectileLifetime = 2.0f;
+    public float hitFeedbackStrength = 0.0f;
 }

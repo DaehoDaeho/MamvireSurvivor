@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float remainingLifetime = 0.0f;
     [SerializeField] private int damageAmount = 1;
     [SerializeField] private bool isInitialized = false;
+    [SerializeField] private float hitFeedbackStrength = 0.0f;
 
     [Header("충돌 판별 설정")]
     [SerializeField] private string enemyTag = "Enemy";
@@ -25,7 +26,7 @@ public class Projectile : MonoBehaviour
         UpdateLifetime();
     }
 
-    public void Initialize(Vector2 direction, float speed, float lifetime, int damage)
+    public void Initialize(Vector2 direction, float speed, float lifetime, int damage, float feedbackStrength)
     {
         if(direction.magnitude > 0.0f)
         {
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
         moveSpeed = speed;
         remainingLifetime = lifetime;
         damageAmount = damage;
+        hitFeedbackStrength = feedbackStrength;
 
         isInitialized = true;
     }
@@ -70,7 +72,7 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("적 명중 완료!!!");
 
-            enemyHealth.TakeDamage(damageAmount);
+            enemyHealth.TakeDamage(damageAmount, hitFeedbackStrength);
 
             Destroy(gameObject);
         }
