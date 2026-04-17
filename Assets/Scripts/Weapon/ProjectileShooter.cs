@@ -15,6 +15,8 @@ public class ProjectileShooter : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    [SerializeField] private AudioSource fireAudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +28,11 @@ public class ProjectileShooter : MonoBehaviour
         if(playerMovementState == null)
         {
             playerMovementState = GetComponent<PlayerMovementState>();
+        }
+
+        if(fireAudioSource == null)
+        {
+            fireAudioSource = GetComponent<AudioSource>();
         }
     }
 
@@ -86,6 +93,29 @@ public class ProjectileShooter : MonoBehaviour
                     currentWeapon.projectileDamage, currentWeapon.hitFeedbackStrength);
                 ++totalShotCount;
             }
+        }
+
+        // 사운드 재생.
+        PlayFireFeedback(currentWeapon);
+    }
+
+    void PlayFireFeedback(WeaponData currentWeapon)
+    {
+        if(currentWeapon == null)
+        {
+            return;
+        }
+
+        if(fireAudioSource != null && currentWeapon.fireSound != null)
+        {
+            // 사운드 재생 함수.
+            fireAudioSource.PlayOneShot(currentWeapon.fireSound);
+        }
+
+        if(currentWeapon.fireEffectPrefab != null)
+        {
+            GameObject fireEffectObject = Instantiate(currentWeapon.fireEffectPrefab, attackPoint.position, Quaternion.identity);
+            Destroy(fireEffectObject, 0.5f);
         }
     }
 

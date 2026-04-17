@@ -18,4 +18,7 @@ public class WeaponData
 
     public float projectileLifetime = 2.0f;
     public float hitFeedbackStrength = 0.0f;
+
+    public AudioClip fireSound = null;
+    public GameObject fireEffectPrefab = null;
 }

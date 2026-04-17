@@ -23,10 +23,22 @@ public class EnemyFeedbackController : MonoBehaviour
 
     [SerializeField] private Color originalColor = Color.white;
 
+    [SerializeField] private AudioSource feedbackAudioSource;
+    [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private AudioClip hitSound;
+
+    [SerializeField] private GameObject deathEffectPrefab;
+    [SerializeField] private AudioClip deathSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         originalColor = spriteRenderer.color;
+        
+        if(feedbackAudioSource == null)
+        {
+            feedbackAudioSource = GetComponent<AudioSource>();
+        }
     }
 
     /// <summary>
@@ -47,6 +59,9 @@ public class EnemyFeedbackController : MonoBehaviour
         // 코루틴 함수 호출.
         StopCoroutine(nameof(HitFlashRoutine));
         StartCoroutine(HitFlashRoutine(flashDuration));
+
+        PlayHitSound();
+        SpawnHitEffect();
     }
 
     /// <summary>
@@ -60,6 +75,9 @@ public class EnemyFeedbackController : MonoBehaviour
         }
 
         StartCoroutine(DeathRoutine());
+
+        PlayDeathSound();
+        SpawnDeathEffect();
     }
 
     /// <summary>
@@ -107,5 +125,49 @@ public class EnemyFeedbackController : MonoBehaviour
         {
             colliders[i].enabled = false;
         }
+    }
+
+    void PlayHitSound()
+    {
+        if(feedbackAudioSource == null || hitSound == null)
+        {
+            return;
+        }
+
+        feedbackAudioSource.PlayOneShot(hitSound);
+    }
+
+    void SpawnHitEffect()
+    {
+        if(hitEffectPrefab == null)
+        {
+            return;
+        }
+
+        GameObject hitEffectObject = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        Destroy(hitEffectObject, 0.5f);
+    }
+
+    void PlayDeathSound()
+    {
+        if(feedbackAudioSource == null || deathSound == null)
+        {
+            return;
+        }
+
+        feedbackAudioSource.PlayOneShot(deathSound);
+    }
+
+    void SpawnDeathEffect()
+    {
+        if (deathEffectPrefab == null)
+        {
+            return;
+        }
+
+        GameObject deathEffectObject = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+
+        Destroy(deathEffectObject, 0.5f);
     }
 }
