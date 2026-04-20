@@ -146,7 +146,7 @@ public class EnemyFeedbackController : MonoBehaviour
 
         GameObject hitEffectObject = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
 
-        Destroy(hitEffectObject, 0.5f);
+        //Destroy(hitEffectObject, 0.5f);
     }
 
     void PlayDeathSound()
@@ -168,6 +168,6 @@ public class EnemyFeedbackController : MonoBehaviour
 
         GameObject deathEffectObject = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
 
-        Destroy(deathEffectObject, 0.5f);
+        //Destroy(deathEffectObject, 0.5f);
     }
 }

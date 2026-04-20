@@ -54,7 +54,7 @@ public class ExperiencePickup : MonoBehaviour
         {
             GameObject pickupEffectObject = Instantiate(pickupEffectPrefab, transform.position, Quaternion.identity);
 
-            Destroy(pickupEffectObject, 0.5f);
+            //Destroy(pickupEffectObject, 0.5f);
         }
     }
 }

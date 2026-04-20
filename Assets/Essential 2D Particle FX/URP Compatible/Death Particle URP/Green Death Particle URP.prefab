@@ -4947,6 +4947,7 @@ GameObject:
   - component: {fileID: 8440171760632619150}
   - component: {fileID: 5774021493654583103}
   - component: {fileID: 3387600702192613277}
+  - component: {fileID: -5510477055169474219}
   m_Layer: 0
   m_Name: Green Death Particle URP
   m_TagString: Untagged
@@ -9831,6 +9832,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-5510477055169474219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220071264055085988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd56b0f74f69c84fa41ffba7523be83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0.5
 --- !u!1 &5240527183343086656
 GameObject:
   m_ObjectHideFlags: 0

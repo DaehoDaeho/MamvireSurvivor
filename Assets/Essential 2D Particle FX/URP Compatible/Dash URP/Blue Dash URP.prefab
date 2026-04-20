@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5356445260723129817}
   - component: {fileID: 1602360023922246025}
   - component: {fileID: 6469515265037881342}
+  - component: {fileID: 5358971950538089121}
   m_Layer: 0
   m_Name: Blue Dash URP
   m_TagString: Untagged
@@ -4834,3 +4835,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5358971950538089121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716100389982693565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd56b0f74f69c84fa41ffba7523be83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0.5

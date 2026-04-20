@@ -115,7 +115,7 @@ public class ProjectileShooter : MonoBehaviour
         if(currentWeapon.fireEffectPrefab != null)
         {
             GameObject fireEffectObject = Instantiate(currentWeapon.fireEffectPrefab, attackPoint.position, Quaternion.identity);
-            Destroy(fireEffectObject, 0.5f);
+            //Destroy(fireEffectObject, 0.5f);
         }
     }
 

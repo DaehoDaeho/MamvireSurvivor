@@ -4911,6 +4911,7 @@ GameObject:
   - component: {fileID: 846505263621402323}
   - component: {fileID: 1129752564372285599}
   - component: {fileID: 7245139138122265611}
+  - component: {fileID: -3674792879848140079}
   m_Layer: 0
   m_Name: Blue Explosion URP 1
   m_TagString: Untagged
@@ -9798,6 +9799,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3674792879848140079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003057537259632177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd56b0f74f69c84fa41ffba7523be83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0.5
 --- !u!1 &5300134236584534381
 GameObject:
   m_ObjectHideFlags: 0
