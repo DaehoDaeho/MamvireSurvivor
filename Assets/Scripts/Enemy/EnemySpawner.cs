@@ -135,6 +135,24 @@ public class EnemySpawner : MonoBehaviour
         spawnCountPerCycle = baseSpawnCountPerCycle + ((wave - 1) / wavePerAddionalSpawn);
     }
 
+    /// <summary>
+    /// 적 생성 주기를 외부에서 설정하는 함수.
+    /// </summary>
+    /// <param name="newSpawnInterval">새 생성 주기</param>
+    public void SetSpawnInterval(float newSpawnInterval)
+    {
+        spawnInterval = newSpawnInterval;
+    }
+
+    /// <summary>
+    /// 한 번에 생성할 적 수를 외부에서 설정하는 함수.
+    /// </summary>
+    /// <param name="newSpawnCountPerCycle">새 생성 수</param>
+    public void SetSpawnCountPerCycle(int newSpawnCountPerCycle)
+    {
+        spawnCountPerCycle = newSpawnCountPerCycle;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

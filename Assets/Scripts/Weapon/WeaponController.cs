@@ -88,4 +88,9 @@ public class WeaponController : MonoBehaviour
     {
         return currentWeaponIndex;
     }
+
+    public WeaponData[] GetAllWeapons()
+    {
+        return weapons;
+    }
 }

@@ -51,10 +51,10 @@ public class GameProgressController : MonoBehaviour
         // 웨이브 변경.
         currentWave = calculatedWave;
 
-        if(enemySpawner != null)
-        {
-            enemySpawner.ApplyDifficulty(currentWave);
-        }
+        //if(enemySpawner != null)
+        //{
+        //    enemySpawner.ApplyDifficulty(currentWave);
+        //}
     }
 
     public float GetSurvivalTime()
