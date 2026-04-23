@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    [SerializeField] private GameResultRecorder gameResultRecorder;
+    [SerializeField] private SceneFlowController sceneFlowController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -115,6 +118,16 @@ public class PlayerHealth : MonoBehaviour
         if(gameManager != null)
         {
             gameManager.EnterGameOver();
+        }
+
+        if(gameResultRecorder != null)
+        {
+            gameResultRecorder.RecordCurrentResult();
+        }
+
+        if(sceneFlowController != null)
+        {
+            sceneFlowController.GoToResultScene();
         }
     }
 
