@@ -14,7 +14,7 @@ public class GameProgressController : MonoBehaviour
 
     [Header("참조 설정")]
     [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameStateController gameStateController;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class GameProgressController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager != null && gameManager.IsPlaying() == false)
+        if(gameStateController != null && gameStateController.IsPlaying() == false)
         {
             return;
         }

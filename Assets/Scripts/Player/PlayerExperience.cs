@@ -19,7 +19,7 @@ public class PlayerExperience : MonoBehaviour
     [Header("UI 참조")]
     [SerializeField] private LevelUpSelectionUI levelUpSelectionUI;
 
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameStateController gameStateController;
 
     public void AddExperience(int amount)
     {
@@ -58,9 +58,9 @@ public class PlayerExperience : MonoBehaviour
         //{
         //    levelUpSelectionUI.Show();
         //}
-        if(gameManager != null)
+        if(gameStateController != null)
         {
-            gameManager.EnterLevelUpSelection();
+            gameStateController.EnterLevelUpSelection();
         }
     }
 

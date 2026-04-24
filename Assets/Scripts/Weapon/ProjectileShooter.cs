@@ -13,7 +13,7 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float attackTimer = 0.0f;
     [SerializeField] private int totalShotCount = 0;
 
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameStateController gameStateController;
 
     [SerializeField] private AudioSource fireAudioSource;
 
@@ -39,7 +39,7 @@ public class ProjectileShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager != null && gameManager.IsPlaying() == false)
+        if (gameStateController != null && gameStateController.IsPlaying() == false)
         {
             return;
         }
@@ -69,35 +69,6 @@ public class ProjectileShooter : MonoBehaviour
         }
 
         return weaponController.GetCurrentWeapon();
-    }
-
-    void FireProjectile(WeaponData currentWeapon)
-    {
-        if(currentWeapon.projectilePrefab == null)
-        {
-            return;
-        }
-
-        Vector2 fireDirection = playerMovementState.GetLastMoveDirection();
-        if(fireDirection == Vector2.zero)
-        {
-            fireDirection = Vector2.right;
-        }
-
-        GameObject spawnedProjectile = Instantiate(currentWeapon.projectilePrefab, attackPoint.position, Quaternion.identity);
-        if(spawnedProjectile != null)
-        {
-            Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
-            if(projectile != null)
-            {
-                projectile.Initialize(fireDirection, currentWeapon.projectileSpeed, currentWeapon.projectileLifetime,
-                    currentWeapon.projectileDamage, currentWeapon.hitFeedbackStrength);
-                ++totalShotCount;
-            }
-        }
-
-        // 사운드 재생.
-        PlayFireFeedback(currentWeapon);
     }
 
     void FirePattern(WeaponData currentWeapon)

@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("상태 확인용")]
     [SerializeField] private bool isDead = false;  // 사망 여부.
 
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameStateController gameStateController;
 
     [SerializeField] private GameResultRecorder gameResultRecorder;
     [SerializeField] private SceneFlowController sceneFlowController;
@@ -114,21 +114,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        //Debug.Log("플레이어 사망 처리");
-        if(gameManager != null)
-        {
-            gameManager.EnterGameOver();
-        }
-
-        if(gameResultRecorder != null)
-        {
-            gameResultRecorder.RecordCurrentResult();
-        }
-
-        if(sceneFlowController != null)
-        {
-            sceneFlowController.GoToResultScene();
-        }
+        GameManager.instance.HandlePlayerDeath();
     }
 
     void StartInvincibility()

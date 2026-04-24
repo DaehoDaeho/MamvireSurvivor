@@ -1,112 +1,83 @@
 using UnityEngine;
 
-public enum GameState
-{
-    Playing,
-    LevelUpSelection,
-    GameOver
-}
-
 /// <summary>
-/// 게임 전체 상태를 중아에서 관리하는 역할.
+/// 게임 전체 흐름을 중앙에서 조율하는 역할.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameState currentState = GameState.Playing;
+    // 현재 씬의 다른 클래스에서 접근 가능한 GameManager의 인스턴스.
+    public static GameManager instance = null;
 
-    [SerializeField] private LevelUpSelectionUI levelUpSelectionUI;
+    [SerializeField] private GameStateController gameStateController;
+    [SerializeField] private SceneFlowController sceneFlowController;
+    [SerializeField] private GameResultRecorder gameResultRecorder;
 
-    [SerializeField] private GameObject gameOverPanel;
+    // 현재 게임 종료 처리가 이미 시작되었는지 여부.
+    [SerializeField] private bool isGameEnding = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        ChangeState(GameState.Playing);
+        // 인스턴스 초기화.
+        instance = this;        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if(gameStateController == null)
+        {
+            gameStateController = GameObject.FindAnyObjectByType<GameStateController>();
+        }
     }
 
     /// <summary>
-    /// 게임 상태를 변경.
+    /// 플레이어 사망 시 호출되는 종료 처리 함수.
     /// </summary>
-    /// <param name="newState">새로 변경할 상태</param>
-    public void ChangeState(GameState newState)
+    public void HandlePlayerDeath()
     {
-        currentState = newState;
-        ApplyState();
+        if(isGameEnding == true)
+        {
+            return;
+        }
+
+        isGameEnding = true;
+
+        if(gameStateController != null)
+        {
+            gameStateController.EnterGameOver();
+        }
+
+        if(gameResultRecorder != null)
+        {
+            gameResultRecorder.RecordCurrentResult();
+        }
+
+        if(sceneFlowController != null)
+        {
+            sceneFlowController.GoToResultScene();
+        }
     }
 
     /// <summary>
-    /// 현재 상태에 맞는 후속 처리를 적용.
+    /// 현재 게임 종료 처리 중인지 반환.
     /// </summary>
-    void ApplyState()
+    /// <returns>게임 종료 처리 중 여부</returns>
+    public bool IsGameEnding()
     {
-        if(currentState == GameState.Playing)
-        {
-            Time.timeScale = 1.0f;
-            if(gameOverPanel != null)
-            {
-                gameOverPanel.SetActive(false);
-            }
-
-            if(levelUpSelectionUI != null && levelUpSelectionUI.gameObject.activeSelf == true)
-            {
-                levelUpSelectionUI.gameObject.SetActive(false);
-            }
-
-            return;
-        }
-
-        if(currentState == GameState.LevelUpSelection)
-        {
-            Time.timeScale = 0.0f;
-
-            if(levelUpSelectionUI != null)
-            {
-                //levelUpSelectionUI.gameObject.SetActive(true);
-                levelUpSelectionUI.Show();
-            }
-
-            return;
-        }
-
-        if(currentState == GameState.GameOver)
-        {
-            Time.timeScale = 0.0f;
-
-            if(gameOverPanel != null)
-            {
-                gameOverPanel.SetActive(true);
-            }
-        }
+        return isGameEnding;
     }
 
-    public GameState GetCurrentState()
+    public GameStateController GetGameStateController()
     {
-        return currentState;
+        return gameStateController;
     }
 
-    public bool IsPlaying()
+    public SceneFlowController GetSceneFlowController()
     {
-        return currentState == GameState.Playing;
+        return sceneFlowController;
     }
 
-    public void EnterLevelUpSelection()
+    public GameResultRecorder GetGameResultRecorder()
     {
-        ChangeState(GameState.LevelUpSelection);
-    }
-
-    public void EnterGameOver()
-    {
-        ChangeState(GameState.GameOver);
-    }
-
-    public void ResumePlaying()
-    {
-        ChangeState(GameState.Playing);
+        return gameResultRecorder;
     }
 }

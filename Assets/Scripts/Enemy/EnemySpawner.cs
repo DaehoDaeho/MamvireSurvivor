@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnTimer = 0.0f;
     [SerializeField] private int totalSpawnedCount = 0;
 
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameStateController gameStateController;
 
     void Awake()
     {
@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager != null && gameManager.IsPlaying() == false)
+        if(gameStateController != null && gameStateController.IsPlaying() == false)
         {
             return;
         }
