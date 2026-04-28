@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileShooter : MonoBehaviour
 {
@@ -56,87 +56,37 @@ public class ProjectileShooter : MonoBehaviour
         if(attackTimer >= currentWeapon.attackInterval)
         {
             //FireProjectile(currentWeapon);
-            FirePattern(currentWeapon);
+            //FirePattern(currentWeapon);
+            FireCurrentWeapon(currentWeapon);
             attackTimer -= currentWeapon.attackInterval;
         }
     }
 
     WeaponData GetCurrentWeapon()
     {
-        if(weaponController == null)
-        {
-            return null;
-        }
+        //if(weaponController == null)
+        //{
+        //    return null;
+        //}
 
         return weaponController.GetCurrentWeapon();
     }
 
-    void FirePattern(WeaponData currentWeapon)
-    {
-        PlayFireFeedback(currentWeapon);
-
-        if(currentWeapon.patternType == WeaponPatternType.Straight)
-        {
-            FireStraightPattern(currentWeapon);
-        }
-        else if(currentWeapon.patternType == WeaponPatternType.Spread)
-        {
-            FireSpreadPattern(currentWeapon);
-        }
-        else if(currentWeapon.patternType == WeaponPatternType.Circle)
-        {
-            FireCirclePattern(currentWeapon);
-        }
-    }
-
     /// <summary>
-    /// 직선형 패턴으로 한 방향에 투사체를 발사.
+    /// 현재 무기의 발사 흐름 전체를 수행.
     /// </summary>
-    /// <param name="currentWeapon">현재 장착 무기 데이터</param>
-    void FireStraightPattern(WeaponData currentWeapon)
-    {
-        Vector2 fireDirection = GetBaseFireDirection();
-        SpawnProjectile(currentWeapon, fireDirection);
-    }
-
-    /// <summary>
-    /// 산탄형 패턴으로 여러 방향에 투사체를 퍼뜨려 발사.
-    /// </summary>
-    /// <param name="currentWeapon">현재 장착 무기 데이터</param>
-    void FireSpreadPattern(WeaponData currentWeapon)
+    /// <param name="currentWeapon">현재 장착한 무기</param>
+    void FireCurrentWeapon(WeaponData currentWeapon)
     {
         Vector2 baseDirection = GetBaseFireDirection();
 
-        int projectileCount = currentWeapon.projectileCount;
-        float angleStep = currentWeapon.spreadAngleStep;
+        PlayFireFeedback(currentWeapon);
 
-        float centerOffset = (projectileCount - 1) * 0.5f;
+        // 발사 방향 목록을 계산해서 저장.
+        List<Vector2> fireDirections = ProjectilePatternCalculator.GetDirections(currentWeapon, baseDirection);
 
-        for(int i=0; i<projectileCount; ++i)
-        {
-            float angleOffset = (i - centerOffset) * angleStep;
-            Vector2 spreadDirection = RotateDirection(baseDirection, angleOffset);
-
-            SpawnProjectile(currentWeapon, spreadDirection);
-        }
-    }
-
-    /// <summary>
-    /// 원형 패턴으로 360도 방향에 균등하게 투사체를 발사.
-    /// </summary>
-    /// <param name="currentWeapon">현재 장착 무기 데이터</param>
-    void FireCirclePattern(WeaponData currentWeapon)
-    {
-        int projectileCount = currentWeapon.projectileCount;
-        float angleStep = 360.0f / projectileCount;
-
-        for(int i=0; i<projectileCount; ++i)
-        {
-            float angle = angleStep * i;
-            Vector2 circleDirection = RotateDirection(Vector2.right, angle);
-
-            SpawnProjectile(currentWeapon, circleDirection);
-        }
+        // 총알 발사.
+        SpawnProjectiles(currentWeapon, fireDirections);
     }
 
     /// <summary>
@@ -156,21 +106,16 @@ public class ProjectileShooter : MonoBehaviour
     }
 
     /// <summary>
-    /// 방향 벡터를 지정한 각도만큼 회전시켜 새 방향을 반환.
+    /// 방향 목록을 순회하면서 투사체를 생성.
     /// </summary>
-    /// <param name="direction">원래 방향</param>
-    /// <param name="angle">회전 각도</param>
-    /// <returns>회전된 방향 벡터</returns>
-    Vector2 RotateDirection(Vector2 direction, float angle)
+    /// <param name="currentWeapon">현재 장착 무기 데이터</param>
+    /// <param name="fireDirections">발사 방향 목록</param>
+    void SpawnProjectiles(WeaponData currentWeapon, List<Vector2> fireDirections)
     {
-        // z 축 기준으로 angle 각도만큼 회전하는 2D 회전값을 만드는 처리.
-        Quaternion rotation = Quaternion.Euler(0.0f, 0.0f, angle);
-
-        // 회전을 벡터에 적용하는 방식
-        // 기존 방향 벡터를 회전시킨 새 방향을 구하는 처리.
-        Vector2 rotateDirection = rotation * direction;
-
-        return rotateDirection.normalized;
+        for(int i=0; i<fireDirections.Count; ++i)
+        {
+            SpawnProjectile(currentWeapon, fireDirections[i]);
+        }
     }
 
     /// <summary>
@@ -202,8 +147,9 @@ public class ProjectileShooter : MonoBehaviour
 
         if(currentWeapon.fireEffectPrefab != null)
         {
-            GameObject fireEffectObject = Instantiate(currentWeapon.fireEffectPrefab, attackPoint.position, Quaternion.identity);
+            //GameObject fireEffectObject = Instantiate(currentWeapon.fireEffectPrefab, attackPoint.position, Quaternion.identity);
             //Destroy(fireEffectObject, 0.5f);
+            EffectSpawnUtility.SpawnEffect(currentWeapon.fireEffectPrefab, attackPoint.position);
         }
     }
 
