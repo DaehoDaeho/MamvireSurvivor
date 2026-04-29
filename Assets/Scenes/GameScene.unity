@@ -279,6 +279,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206013603}
   m_CullTransparentMesh: 1
+--- !u!1 &271041049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 271041050}
+  - component: {fileID: 271041051}
+  m_Layer: 0
+  m_Name: BalanceApplier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &271041050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271041049}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917618558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &271041051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271041049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d55655044089f84c87b17e27085db6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balanceProfile: {fileID: 11400000, guid: e61377cbaf7f756479b7fec6374dae47, type: 2}
+  enemySpawner: {fileID: 1227723376}
+  weaponController: {fileID: 321833724}
+  playerExperience: {fileID: 321833722}
 --- !u!1 &321833713
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +562,7 @@ MonoBehaviour:
   requiredExperienceIncrease: 2
   levelUpSelectionUI: {fileID: 206013605}
   gameStateController: {fileID: 1776625144}
+  requiredExperienceMultiplier: 1
 --- !u!114 &321833723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,6 +1923,7 @@ Transform:
   - {fileID: 2023488180}
   - {fileID: 1266080090}
   - {fileID: 1066813325}
+  - {fileID: 271041050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003101116

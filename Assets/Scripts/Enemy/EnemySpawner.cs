@@ -153,6 +153,16 @@ public class EnemySpawner : MonoBehaviour
         spawnCountPerCycle = newSpawnCountPerCycle;
     }
 
+    public float GetSpawnInterval()
+    {
+        return spawnInterval;
+    }
+
+    public int GetSpawnCountPerCycle()
+    {
+        return spawnCountPerCycle;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
