@@ -52,7 +52,7 @@ public class PlayerExperience : MonoBehaviour
         ++currentLevel;
 
         //requiredExperience += requiredExperienceIncrease;
-        requiredExperience += CalculateRequiredExperience();
+        requiredExperience = CalculateRequiredExperience();
 
         Debug.Log("현재 레벨 : " + currentLevel + ", 남은 경험치 : " + currentExperience +
             ", 다음 필요 경험치 : " + requiredExperience);
