@@ -9,11 +9,6 @@ public class PlayerStatController : MonoBehaviour
     [SerializeField] private PlayerMovementState playerMovementState;
     [SerializeField] private ProjectileShooter projectileShooter;
 
-    [Header("레벨업 당 증가량 설정")]
-    [SerializeField] private float moveSpeedIncreasePerLevel = 0.5f;
-    [SerializeField] private float attackIntervalDecreasePerLevel = 0.1f;
-    [SerializeField] private float projectileSpeedIncreasePerLevel = 1.0f;
-
     [Header("안전 제한 설정")]
     [SerializeField] private float minimumAttackInterval = 0.2f;
 
@@ -31,22 +26,22 @@ public class PlayerStatController : MonoBehaviour
         }
     }
 
-    public void ApplyMoveSpeedUpgrade()
+    public void ApplyMoveSpeedUpgrade(float upgradeValue)
     {
         if (playerMovementState != null)
         {
             float currentMoveSpeed = playerMovementState.GetMoveSpeed();
-            float newMoveSpeed = currentMoveSpeed + moveSpeedIncreasePerLevel;
+            float newMoveSpeed = currentMoveSpeed + upgradeValue;
             playerMovementState.SetMoveSpeed(newMoveSpeed);
         }
     }
 
-    public void ApplyAttackSpeedUpgrade()
+    public void ApplyAttackSpeedUpgrade(float upgradeValue)
     {
         if(projectileShooter != null)
         {
             float currentAttackInterval = projectileShooter.GetAttackInterval();
-            float newAttackInterval = currentAttackInterval - attackIntervalDecreasePerLevel;
+            float newAttackInterval = currentAttackInterval - upgradeValue;
 
             if (newAttackInterval < minimumAttackInterval)
             {
@@ -57,12 +52,12 @@ public class PlayerStatController : MonoBehaviour
         }
     }
 
-    public void ApplyProjectileSpeedUpgrade()
+    public void ApplyProjectileSpeedUpgrade(float upgradeValue)
     {
         if(projectileShooter != null)
         {
             float currentProjectileSpeed = projectileShooter.GetProjectileSpeed();
-            float newProjectileSpeed = currentProjectileSpeed + projectileSpeedIncreasePerLevel;
+            float newProjectileSpeed = currentProjectileSpeed + upgradeValue;
             projectileShooter.SetProjectileSpeed(newProjectileSpeed);
         }
     }

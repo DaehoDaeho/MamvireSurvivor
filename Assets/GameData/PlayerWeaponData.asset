@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20f64fc580375c45b45e727f9cdb6e4, type: 3}
+  m_Name: PlayerWeaponData
+  m_EditorClassIdentifier: 
+  playerWeaponDatas:
+  - weaponName: Basic
+    attackInterval: 1
+    projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
+    projectileSpeed: 15
+    projectileDamage: 1
+    projectileLifetime: 2
+    hitFeedbackStrength: 0
+    patternType: 0
+    projectileCount: 1
+    spreadAngleStep: 15
+    fireSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
+    fireEffectPrefab: {fileID: 1148272302963948007, guid: 6c90f3b8adf59a84da4f22b7dd1a941b, type: 3}
+  - weaponName: SpreadGun
+    attackInterval: 1
+    projectilePrefab: {fileID: 5540538010018331382, guid: f35a65d6447c13c469254ad4e64c10a5, type: 3}
+    projectileSpeed: 12
+    projectileDamage: 1
+    projectileLifetime: 0.5
+    hitFeedbackStrength: 0.1
+    patternType: 1
+    projectileCount: 5
+    spreadAngleStep: 15
+    fireSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+    fireEffectPrefab: {fileID: 1148272302963948007, guid: 2599e340bf3c23248b78104619af061c, type: 3}
+  - weaponName: CircleBurst
+    attackInterval: 1.5
+    projectilePrefab: {fileID: 5540538010018331382, guid: 4beaa89dc235bdd478b9940930e5b552, type: 3}
+    projectileSpeed: 9
+    projectileDamage: 1
+    projectileLifetime: 3
+    hitFeedbackStrength: 0.6
+    patternType: 2
+    projectileCount: 16
+    spreadAngleStep: 15
+    fireSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+    fireEffectPrefab: {fileID: 1148272302963948007, guid: 8e6d7089ebfb77041b24572cd0bb984d, type: 3}

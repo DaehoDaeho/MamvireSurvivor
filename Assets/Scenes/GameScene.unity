@@ -241,6 +241,11 @@ MonoBehaviour:
   playerStatController: {fileID: 321833723}
   isOpen: 0
   gameStateController: {fileID: 1776625144}
+  descriptionTexts:
+  - {fileID: 915036531}
+  - {fileID: 834514324}
+  - {fileID: 1536244949}
+  upgradeOptionData: {fileID: 11400000, guid: cfee9a5aaf83dc54f8c54d80db591bea, type: 2}
 --- !u!114 &206013606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,9 +582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementState: {fileID: 321833717}
   projectileShooter: {fileID: 321833721}
-  moveSpeedIncreasePerLevel: 0.5
-  attackIntervalDecreasePerLevel: 0.1
-  projectileSpeedIncreasePerLevel: 1
   minimumAttackInterval: 0.2
 --- !u!114 &321833724
 MonoBehaviour:
@@ -593,43 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa7ad60ab86aa7449daa232b4fc399b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - weaponName: Basic
-    attackInterval: 1
-    projectilePrefab: {fileID: 5540538010018331382, guid: 774e407fcba847342889e71f78f878b0, type: 3}
-    projectileSpeed: 15
-    projectileDamage: 1
-    projectileLifetime: 2
-    hitFeedbackStrength: 0
-    patternType: 0
-    projectileCount: 1
-    spreadAngleStep: 15
-    fireSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
-    fireEffectPrefab: {fileID: 1148272302963948007, guid: 6c90f3b8adf59a84da4f22b7dd1a941b, type: 3}
-  - weaponName: SpreadGun
-    attackInterval: 1
-    projectilePrefab: {fileID: 5540538010018331382, guid: f35a65d6447c13c469254ad4e64c10a5, type: 3}
-    projectileSpeed: 12
-    projectileDamage: 1
-    projectileLifetime: 1.5
-    hitFeedbackStrength: 0.1
-    patternType: 1
-    projectileCount: 5
-    spreadAngleStep: 15
-    fireSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
-    fireEffectPrefab: {fileID: 1148272302963948007, guid: 2599e340bf3c23248b78104619af061c, type: 3}
-  - weaponName: CircleBurst
-    attackInterval: 1.5
-    projectilePrefab: {fileID: 5540538010018331382, guid: 4beaa89dc235bdd478b9940930e5b552, type: 3}
-    projectileSpeed: 9
-    projectileDamage: 1
-    projectileLifetime: 3
-    hitFeedbackStrength: 0.6
-    patternType: 2
-    projectileCount: 16
-    spreadAngleStep: 15
-    fireSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
-    fireEffectPrefab: {fileID: 1148272302963948007, guid: 8e6d7089ebfb77041b24572cd0bb984d, type: 3}
+  playerWeaponData: {fileID: 11400000, guid: 53255c57f3d6993498d4e9d29fc8b5e0, type: 2}
   currentWeaponIndex: 0
 --- !u!82 &321833725
 AudioSource:
@@ -1150,7 +1116,7 @@ GameObject:
   - component: {fileID: 494893889}
   - component: {fileID: 494893888}
   m_Layer: 0
-  m_Name: ButtonUpgradeProjectileSpeed
+  m_Name: ButtonUpgrade3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,12 +1188,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206013605}
         m_TargetAssemblyTypeName: LevelUpSelectionUI, Assembly-CSharp
-        m_MethodName: SelectProjectileSpeedUpgrade
-        m_Mode: 1
+        m_MethodName: OnClickUpgrade
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1662,11 +1628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Upgrade
-
-    Atttack
-
-    Speed'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1709,7 +1671,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1802,11 +1764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Upgrade
-
-    Move
-
-    Speed'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1849,7 +1807,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2529,7 +2487,7 @@ GameObject:
   - component: {fileID: 1355440664}
   - component: {fileID: 1355440663}
   m_Layer: 0
-  m_Name: ButtonUpgradeMoveSpeed
+  m_Name: ButtonUpgrade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2601,8 +2559,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206013605}
         m_TargetAssemblyTypeName: LevelUpSelectionUI, Assembly-CSharp
-        m_MethodName: SelectMoveSpeedUpgrade
-        m_Mode: 1
+        m_MethodName: OnClickUpgrade
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2770,11 +2728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Upgrade
-
-    Projectile
-
-    Speed'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2817,7 +2771,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2942,7 +2896,7 @@ GameObject:
   - component: {fileID: 1689228950}
   - component: {fileID: 1689228949}
   m_Layer: 0
-  m_Name: ButtonUpgradeAttackSpeed
+  m_Name: ButtonUpgrade2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3014,12 +2968,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206013605}
         m_TargetAssemblyTypeName: LevelUpSelectionUI, Assembly-CSharp
-        m_MethodName: SelectAttackSpeedUpgrade
-        m_Mode: 1
+        m_MethodName: OnClickUpgrade
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

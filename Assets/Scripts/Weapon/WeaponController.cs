@@ -5,9 +5,21 @@ using UnityEngine;
 /// </summary>
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private WeaponData[] weapons;
+    //[SerializeField] private WeaponData[] weapons;
+    [SerializeField] private PlayerWeaponData playerWeaponData;
 
     [SerializeField] private int currentWeaponIndex = 0;
+
+    private WeaponData[] weapons;
+
+    void Awake()
+    {
+        weapons = new WeaponData[playerWeaponData.GetWeaponDataCount()];
+        for(int i=0; i< playerWeaponData.GetWeaponDataCount(); ++i)
+        {
+            weapons[i] = playerWeaponData.CopyWeaponData(i);
+        }
+    }
 
     // Update is called once per frame
     void Update()
