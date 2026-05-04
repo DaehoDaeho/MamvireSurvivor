@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 321833723}
   - component: {fileID: 321833724}
   - component: {fileID: 321833725}
+  - component: {fileID: 321833726}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -445,6 +446,7 @@ MonoBehaviour:
   lastMoveDirection: {x: 0, y: 0}
   isMoving: 0
   moveOffset: {x: 0, y: 0, z: 0}
+  spriteRenderer: {fileID: 321833716}
 --- !u!114 &321833718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +550,7 @@ MonoBehaviour:
   attackTimer: 0
   totalShotCount: 0
   gameStateController: {fileID: 1776625144}
+  enemyTargetFinder: {fileID: 321833726}
   fireAudioSource: {fileID: 321833725}
 --- !u!114 &321833722
 MonoBehaviour:
@@ -694,6 +697,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &321833726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321833713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7405593a9921214b84fa71d79d941ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRadius: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &348426422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1267,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1373,6 +1393,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee661344ad0c58e4991ab81cd9256191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 321833714}
+  followSpeed: 8
+  cameraZPosition: -10
 --- !u!1 &532016355
 GameObject:
   m_ObjectHideFlags: 0

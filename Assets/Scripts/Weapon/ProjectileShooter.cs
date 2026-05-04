@@ -15,6 +15,8 @@ public class ProjectileShooter : MonoBehaviour
 
     [SerializeField] private GameStateController gameStateController;
 
+    [SerializeField] private EnemyTargetFinder enemyTargetFinder;
+
     [SerializeField] private AudioSource fireAudioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -80,6 +82,11 @@ public class ProjectileShooter : MonoBehaviour
     {
         Vector2 baseDirection = GetBaseFireDirection();
 
+        if(baseDirection == Vector2.zero)
+        {
+            return;
+        }
+
         PlayFireFeedback(currentWeapon);
 
         // 발사 방향 목록을 계산해서 저장.
@@ -95,14 +102,16 @@ public class ProjectileShooter : MonoBehaviour
     /// <returns>기준 발사 방향</returns>
     Vector2 GetBaseFireDirection()
     {
-        Vector2 fireDirection = playerMovementState.GetLastMoveDirection();
+        Vector2 targetDirection = Vector2.zero;
 
-        if(fireDirection == Vector2.zero)
+        bool hasTarget = enemyTargetFinder.TryGetNearestTargetDirection(out targetDirection);
+
+        if(hasTarget == true)
         {
-            fireDirection = Vector2.right;
+            return targetDirection;
         }
 
-        return fireDirection.normalized;
+        return Vector2.zero;
     }
 
     /// <summary>

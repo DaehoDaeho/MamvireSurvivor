@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3245288270041922825}
   - component: {fileID: 8288384783725612971}
   - component: {fileID: 5091044195554610552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
   moveSpeed: 2.5
+  spriteRenderer: {fileID: 9139381926231784885}
   moveDirection: {x: 0, y: 0}
   moveOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &79594426933609782

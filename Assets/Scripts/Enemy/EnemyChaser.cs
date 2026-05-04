@@ -15,6 +15,8 @@ public class EnemyChaser : MonoBehaviour
     [Header("이동 설정")]
     [SerializeField] private float moveSpeed = 2.5f;
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     [Header("디버그 확인용")]
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
     [SerializeField] private Vector3 moveOffset = Vector3.zero;
@@ -49,6 +51,7 @@ public class EnemyChaser : MonoBehaviour
         // 이동 처리.
         UpdateMoveDirection();
         MoveToTarget();
+        UpdateDirection();
     }
 
     /// <summary>
@@ -78,6 +81,18 @@ public class EnemyChaser : MonoBehaviour
         moveOffset = new Vector3(moveDirection.x, moveDirection.y, 0.0f) * moveSpeed * Time.deltaTime;
 
         transform.position += moveOffset;
+    }
+
+    void UpdateDirection()
+    {
+        if(moveDirection.x < 0.0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if(moveDirection.x > 0.0f)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     public Vector2 GetMoveDirection()

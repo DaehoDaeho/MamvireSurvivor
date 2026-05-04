@@ -18,6 +18,8 @@ public class PlayerMovementState : MonoBehaviour
     [SerializeField]
     private Vector3 moveOffset = Vector3.zero;  // 이동량을 저장할 변수.
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private bool previousIsMoving = false;  // 이전 프레임의 이동 상태를 저장할 변수.
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class PlayerMovementState : MonoBehaviour
         ReadMovementInput();
         UpdateMovementState();
         MovePlayer();
+        UpdateDirection();
         //DebugMovementStateChange();
     }
 
@@ -69,6 +72,18 @@ public class PlayerMovementState : MonoBehaviour
         moveOffset = new Vector3(moveDirection.x, moveDirection.y, 0.0f) * moveSpeed * Time.deltaTime;
 
         transform.position += moveOffset;
+    }
+
+    void UpdateDirection()
+    {
+        if(lastMoveDirection.x < 0.0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if(lastMoveDirection.x > 0.0f)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     void DebugMovementStateChange()
