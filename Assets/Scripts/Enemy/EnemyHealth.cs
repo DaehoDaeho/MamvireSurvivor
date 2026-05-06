@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private GameObject experiencePickupPrefab;
 
     [SerializeField] private EnemyFeedbackController enemyFeedbackController;
+    [SerializeField] private BossClearNotifier bossClearNotifier;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,6 +56,11 @@ public class EnemyHealth : MonoBehaviour
 
         // 경험치 드랍, 사망 이펙트, 사운드 재생.
         DropExperiencePickup();
+
+        if(bossClearNotifier != null)
+        {
+            bossClearNotifier.NotifyBossDefeated();
+        }
 
         if(enemyFeedbackController != null)
         {

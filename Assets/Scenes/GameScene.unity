@@ -1091,6 +1091,56 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &395899783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395899784}
+  - component: {fileID: 395899785}
+  m_Layer: 0
+  m_Name: BossSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &395899784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395899783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917618558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395899785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395899783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7a84e115e3e5741bc902468d0ab1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 8254822418400226013, guid: baf87f99d5ad3d545a3d050744144a0d, type: 3}
+  bossWave: 4
+  spawnDistance: 10
+  gameProgressController: {fileID: 1066579370}
+  playerTransform: {fileID: 0}
+  isBossSpawned: 0
 --- !u!1 &415818300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1967,7 @@ Transform:
   - {fileID: 1266080090}
   - {fileID: 1066813325}
   - {fileID: 271041050}
+  - {fileID: 395899784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003101116
@@ -2138,7 +2189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   survivalTime: 0
   currentWave: 1
-  waveDuration: 30
+  waveDuration: 10
   enemySpawner: {fileID: 1227723376}
   gameStateController: {fileID: 1776625144}
 --- !u!1 &1066813324

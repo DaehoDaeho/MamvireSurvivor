@@ -58,6 +58,29 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 보스 처치 또는 목표 달성 시 게임 클리어 흐름을 처리.
+    /// </summary>
+    public void HandleGameClear()
+    {
+        if(isGameEnding == true)
+        {
+            return;
+        }
+
+        isGameEnding = true;
+
+        if(gameResultRecorder != null)
+        {
+            gameResultRecorder.RecordCurrentResult();
+        }
+
+        if(sceneFlowController != null)
+        {
+            sceneFlowController.GoToResultScene();
+        }
+    }
+
+    /// <summary>
     /// 현재 게임 종료 처리 중인지 반환.
     /// </summary>
     /// <returns>게임 종료 처리 중 여부</returns>
