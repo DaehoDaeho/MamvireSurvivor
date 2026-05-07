@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class GameResultPresenter : MonoBehaviour
 {
+    [SerializeField] private TMP_Text resultTitleText;
     [SerializeField] private TMP_Text surviveText;
     [SerializeField] private TMP_Text finalLevelText;
     [SerializeField] private TMP_Text finalWeaponText;
@@ -21,6 +22,11 @@ public class GameResultPresenter : MonoBehaviour
     /// </summary>
     void RefreshResultUI()
     {
+        if(resultTitleText != null)
+        {
+            resultTitleText.text = GameResultData.lastResultTitle;
+        }
+
         if(surviveText != null)
         {
             int totalSeconds = Mathf.FloorToInt(GameResultData.lastSurviveTime);

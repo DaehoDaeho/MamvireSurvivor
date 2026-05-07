@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
         isGameEnding = true;
 
+        GameResultData.lastResultTitle = "Game Over";
+
         if(gameStateController != null)
         {
             gameStateController.EnterGameOver();
@@ -68,6 +70,8 @@ public class GameManager : MonoBehaviour
         }
 
         isGameEnding = true;
+
+        GameResultData.lastResultTitle = "Game Clear";
 
         if(gameResultRecorder != null)
         {

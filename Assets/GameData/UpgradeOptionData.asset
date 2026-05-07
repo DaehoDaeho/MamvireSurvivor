@@ -25,3 +25,7 @@ MonoBehaviour:
     description: Upgrade Projectile Speed
     optionType: 2
     upgradeValue: 1
+  - name: Projectile Damage
+    description: Upgrade Projectile Damage
+    optionType: 3
+    upgradeValue: 1

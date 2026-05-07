@@ -5,7 +5,8 @@ public enum UpgradeOptionType
 {
     MoveSpeed,
     AttackSpeed,
-    ProjectileSpeed
+    ProjectileSpeed,
+    ProjectileDamage
 }
 
 [System.Serializable]

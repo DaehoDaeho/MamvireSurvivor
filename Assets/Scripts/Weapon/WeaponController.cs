@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private int currentWeaponIndex = 0;
 
-    private WeaponData[] weapons;
+    [SerializeField] private WeaponData[] weapons;
 
     void Awake()
     {

@@ -88,6 +88,15 @@ public class LevelUpSelectionUI : MonoBehaviour
                     }
                 }
                 break;
+
+            case UpgradeOptionType.ProjectileDamage:
+                {
+                    if (playerStatController != null)
+                    {
+                        playerStatController.ApplyProjectileDamageUpgrade((int)optionDatasList[index].upgradeValue);
+                    }
+                }
+                break;
         }
 
         Hide();

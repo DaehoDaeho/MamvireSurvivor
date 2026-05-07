@@ -10,9 +10,11 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private float spawnDistance = 10.0f;
 
     [SerializeField] private GameProgressController gameProgressController;
+    [SerializeField] private BossBattleUIController bossBattleUIController;
     [SerializeField] private Transform playerTransform;
 
     [SerializeField] private bool isBossSpawned = false;
+    [SerializeField] private string bossDisplayName = "Boss";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,7 +69,14 @@ public class BossSpawner : MonoBehaviour
         Vector3 spawnPosition = playerTransform.position + new Vector3(randomDirection.x,
             randomDirection.y, 0.0f) * spawnDistance;
 
-        Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
+        GameObject bossObject = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
+        EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
+
+        if(bossBattleUIController != null && bossHealth != null)
+        {
+            bossBattleUIController.ShowBoss(bossHealth, bossDisplayName);
+        }
+
         isBossSpawned = true;
     }
 }

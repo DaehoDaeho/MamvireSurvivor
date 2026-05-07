@@ -61,4 +61,14 @@ public class PlayerStatController : MonoBehaviour
             projectileShooter.SetProjectileSpeed(newProjectileSpeed);
         }
     }
+
+    public void ApplyProjectileDamageUpgrade(int upgradeValue)
+    {
+        if(projectileShooter != null)
+        {
+            int currentProjectileDamage = projectileShooter.GetProjectileDamage();
+            int newProjectileDamage = currentProjectileDamage + upgradeValue;
+            projectileShooter.SetProjectileDamage(newProjectileDamage);
+        }
+    }
 }

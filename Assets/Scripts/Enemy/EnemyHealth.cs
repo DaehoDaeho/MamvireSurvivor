@@ -82,6 +82,11 @@ public class EnemyHealth : MonoBehaviour
         return currentHealth;
     }
 
+    public int GetMaximumHealth()
+    {
+        return maximumHealth;
+    }
+
     public bool IsDead()
     {
         return isDead;

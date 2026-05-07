@@ -209,4 +209,28 @@ public class ProjectileShooter : MonoBehaviour
 
         currentWeapon.projectileSpeed = newProjectileSpeed;
     }
+
+    public int GetProjectileDamage()
+    {
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if(currentWeapon == null)
+        {
+            return 0;
+        }
+
+        return (int)currentWeapon.projectileDamage;
+    }
+
+    public void SetProjectileDamage(int newProjectileDamage)
+    {
+        WeaponData currentWeapon = GetCurrentWeapon();
+
+        if (currentWeapon == null)
+        {
+            return;
+        }
+
+        currentWeapon.projectileDamage = newProjectileDamage;
+    }
 }
