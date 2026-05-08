@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyProjectilePrefab: {fileID: 5540538010018331382, guid: 242c615e1fd2b8c4ea2f2faad4b4f8f4, type: 3}
   firePoint: {fileID: 5853418560234857914}
-  attackRange: 6
+  attackRange: 5
   attackInterval: 3
   projectileSpeed: 6
   projectileLifeTime: 3
