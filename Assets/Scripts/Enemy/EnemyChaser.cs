@@ -21,6 +21,8 @@ public class EnemyChaser : MonoBehaviour
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
     [SerializeField] private Vector3 moveOffset = Vector3.zero;
 
+    [SerializeField] private RangedEnemyAttack rangedEnemyAttack;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -78,6 +80,11 @@ public class EnemyChaser : MonoBehaviour
 
     void MoveToTarget()
     {
+        if(rangedEnemyAttack != null && rangedEnemyAttack.CanFire() == true)
+        {
+            return;
+        }
+
         moveOffset = new Vector3(moveDirection.x, moveDirection.y, 0.0f) * moveSpeed * Time.deltaTime;
 
         transform.position += moveOffset;

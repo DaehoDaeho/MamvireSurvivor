@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("참조 설정")]
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private Transform playerTransform;
 
     [Header("스폰 설정")]
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        if(playerTransform == null || enemyPrefab == null)
+        if(playerTransform == null || enemyPrefabs == null)
         {
             return;
         }
@@ -77,6 +77,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 적 프리팹 목록에서 하나를 랜덤으로 선택.
+    /// </summary>
+    /// <returns></returns>
+    GameObject GetRandomEnemyPrefab()
+    {
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        return enemyPrefabs[randomIndex];
+    }
+
     void SpawnEnemies()
     {
         for(int i=0; i<spawnCountPerCycle; ++i)
@@ -84,7 +94,9 @@ public class EnemySpawner : MonoBehaviour
             // 스폰 위치 계산.
             Vector3 spawnPosition = CalculateSpawnPosition();
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject selectedEnemyPrefab = GetRandomEnemyPrefab();
+
+            Instantiate(selectedEnemyPrefab, spawnPosition, Quaternion.identity);
 
             ++totalSpawnedCount;
         }

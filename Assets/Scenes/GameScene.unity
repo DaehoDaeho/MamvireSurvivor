@@ -880,6 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerWeaponData: {fileID: 11400000, guid: 53255c57f3d6993498d4e9d29fc8b5e0, type: 2}
   currentWeaponIndex: 0
+  weapons: []
 --- !u!82 &321833725
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3675,7 +3676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0fef76799415c46a63f9f1b51b85c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8254822418400226013, guid: 55999a956ca881241928d1b8fd6c636f, type: 3}
+  enemyPrefabs:
+  - {fileID: 8254822418400226013, guid: 55999a956ca881241928d1b8fd6c636f, type: 3}
+  - {fileID: 8254822418400226013, guid: 151130f9bf3aee541a470a96434efa6e, type: 3}
   playerTransform: {fileID: 321833714}
   spawnInterval: 2
   spawnRadius: 6
